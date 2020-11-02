@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curso Basico de Vue.js | Platzi</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="app" v-bind:style="{ background: '#' + color }">
+        <img
+        v-on:mouseover="toggleShowPrices"
+        v-on:mouseout="toggleShowPrices"
+        v-bind:src="img"
+        v-bind:alt="name"
+        >
+        <h1 v-bind:class="changePercent > 0 ? 'green' : 'red'">{{title}}
+            <span v-if="changePercent > 0">::</span>
+            <span v-else>Chales</span>
+            <span v-on:click="toggleShowPrices">
+                {{showPrices ? 'Ocultar' : 'Mostrar😎'}}
+            </span>
+        </h1>
+        <input type="number" v-model="value"><br>
+        <span>{{ convertedValue }}</span>
+        <ul v-show="showPrices">
+            <li
+            class="uppercase"
+            v-bind:class="{orange: p.value === price,
+                    red: p.value < price,
+                    green: p.value > price}"
+            v-for="(p, i) in pricesWithDays"
+            v-bind:key="p.day">
+                {{i}} - {{ p.day }} - {{p.value}}
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
+<!-- Los datos dinamicos se hacen dentro de las etiquetas con un {{}}  y como atributos con un v:bind -->
+<!-- Puedes usar los v:if como control de flujo y tambien los v-show -->
+<!-- El V:if remueve el elemento y el v-show no , el v-if es menos recomendable para reactivos pesados-->
+<!--En el bucle for el elemento (p = elemento, i = indice)-->
+<!--El V-on:event lo que hace es llamar a las funciones en determinados eventos-->
+<!--Los computed styles son metodos que retornan un valor-->
+<!--Los watchers son funciones que ejecutan un codigo apartir de el cambio de un objeto-->
+<!--V:model es con el que haces two way data:binding el cual une a el dom con el Data dentro de vue-->
