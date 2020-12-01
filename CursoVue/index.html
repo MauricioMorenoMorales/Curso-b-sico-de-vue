@@ -9,21 +9,9 @@
 </head>
 <body>
     <div id="app" v-bind:style="{ background: '#' + color }">
-        <img
-        v-on:mouseover="toggleShowPrices"
-        v-on:mouseout="toggleShowPrices"
-        v-bind:src="img"
-        v-bind:alt="name"
-        >
-        <h1 v-bind:class="changePercent > 0 ? 'green' : 'red'">{{title}}
-            <span v-if="changePercent > 0">::</span>
-            <span v-else>Chales</span>
-            <span v-on:click="toggleShowPrices">
-                {{showPrices ? 'Ocultar' : 'Mostrar😎'}}
-            </span>
-        </h1>
-        <input type="number" v-model="value"><br>
-        <span>{{ convertedValue }}</span>
+        <coin-detail
+            v-bind:coin="btc"
+        />
         <ul v-show="showPrices">
             <li
             class="uppercase"
@@ -49,3 +37,4 @@
 <!--Los computed styles son metodos que retornan un valor-->
 <!--Los watchers son funciones que ejecutan un codigo apartir de el cambio de un objeto-->
 <!--V:model es con el que haces two way data:binding el cual une a el dom con el Data dentro de vue-->
+<!--En html se usa el kbab case y en javascript se mantiene el pascal case-->

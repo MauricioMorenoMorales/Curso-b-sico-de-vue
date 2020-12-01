@@ -3,20 +3,24 @@ const app = new Vue({
 
     data() {
         return {
-            horasCurso: 0,
+            horasCurso: '',
             nombreCurso: '',
-            listaCursos: []
+            cursos: [],
+            totalTime: 0,
+            error: false
         }
-    },
-
-    computed: {
-
     },
 
     methods: {
         guardaCurso(){
-            return this.listaCursos.push({nombreCurso: this.nombreCurso, horasCurso : this.horasCurso})
-            document.querySelector('#titulo-de-curso').reset()
+            if(!this.horasCurso || !this.nombreCurso) {return this.error = true}
+            this.cursos.push({title: this.nombreCurso, time: parseInt(this.horasCurso) })
+            this.totalTime = 0
+            this.cursos.forEach(element => {
+                this.totalTime += parseInt(element.time)
+            });
+            this.horasCurso = ''
+            this.nombreCurso = ''
         }
     }
 })

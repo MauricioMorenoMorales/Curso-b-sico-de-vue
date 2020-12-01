@@ -8,7 +8,7 @@
         html {
     padding: 20px;
     color: #3d3d3d;
-}       
+}
         body{
             background-color: black;
             color: #00ee00;
@@ -33,10 +33,11 @@
         <p>
             <button v-on:click="guardaCurso">Guardar Curso</button>
         </p>
+        <p class="red" v-show="error === true"> Tienes que llenar los dos formularios</p>
         <!-- </fieldset> -->
         <div>
             <h3>Lista de Cursos</h3>
-            <p class="red">Aun no has realizado cursos</p>
+            <p class="red" v-show="cursos.length === 0">Aun no has realizado cursos</p>
             <div>
                 <ol>
                     <!-- Lista de cursos -->
@@ -46,6 +47,9 @@
                     Llevo <strong>{{ totalTime }}</strong> horas aprendiendo en Platzi.
                     <b>#NuncaParesDeAprender 💚</b>
                 </p>
+                <ul>
+                    <li v-for="(cursos, index) in cursos" :key="index"> {{cursos.title}} - {{cursos.time}} </li>
+                </ul>
             </div>
         </div>
     </div>
