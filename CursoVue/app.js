@@ -9,6 +9,8 @@ Vue.component('CoinDetail',{
 	methods: {
 		toggleShowPrices(){
 			this.showPrices = !this.showPrices
+
+			this.$emit('change-color', this.showPrices ? 'ff96c8': '3d3d3d')
 		},
 	},
 	computed: {
@@ -40,6 +42,8 @@ Vue.component('CoinDetail',{
 		</h1>
 		<input type="number" v-model="value"><br>
 		<span>{{ convertedValue }}</span>
+		<slot name="text"></slot>
+		<slot name="link"></slot>
 		<ul v-show="showPrices">
 		<li
 		class="uppercase"
@@ -80,13 +84,23 @@ new Vue({
 		}
 	},
 
+	created(){
+		console.log('creatd')
+	},
+	mounted(){
+		console.log('Mounted')
+	},
 
-	// methods: {
-	// 	toggleShowPrices(){
-	// 		this.showPrices = !this.showPrices
-	// 		this.color = this.color.split('').reverse('').join('')
-	// 	}
-	// }
+	methods: {
+		updateColor(color){
+			this.color = color || this.color
+			this.showPrices = !this.showPrices
+			this.color = this.color
+				.split('')
+				.reverse('')
+				.join('')
+		}
+	}
 })
 
 /* Se pueden acceder a valores de data asignandole una variable a la instancia y con el

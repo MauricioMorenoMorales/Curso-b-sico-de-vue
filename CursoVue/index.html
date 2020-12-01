@@ -10,8 +10,16 @@
 <body>
     <div id="app" v-bind:style="{ background: '#' + color }">
         <coin-detail
-            v-bind:coin="btc"
-        />
+            v-on:change-color="updateColor"
+            v-bind:coin="btc">
+            <template v-slot:text>
+                <p>2Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, iure.</p>
+            </template>
+            <template v-slot:link>
+                <p>3Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, iure.</p>
+            </template>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, amet?</p>
+        </coin-detail>
         <ul v-show="showPrices">
             <li
             class="uppercase"
