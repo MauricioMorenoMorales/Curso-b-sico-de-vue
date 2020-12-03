@@ -5,22 +5,22 @@
 </template>
 
 <script>
-import PxAssetsTable from '@/components/PxAssetsTable'
-import api from '@/api'
+import PxAssetsTable from "@/components/PxAssetsTable";
+import api from "@/api";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: { PxAssetsTable },
 
   data() {
     return {
-      assets: []
-    }
+      assets: [],
+    };
   },
   created() {
-    api.getAssets().then(assets => (this.assets = assets))
-  }
-}
+    api.getAssets().then(assets => (this.assets = assets));
+  },
+};
 </script>
 
 <style></style>

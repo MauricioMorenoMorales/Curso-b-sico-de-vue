@@ -12,7 +12,7 @@
           />
           <h1 class="text-5xl">
             {{ asset.name }}
-            <small class="sm:mr-2 text-gray-500">{{ asset.symbol }}</small>
+            <small class="sm:mr-2 text-gray-500"> {{ asset.symbol }}</small>
           </h1>
         </div>
 
@@ -71,46 +71,37 @@
 
 <script>
 import api from "@/api";
-
 export default {
   name: "CoinDetail",
-
   data() {
     return {
       asset: {},
-      history: [],
+      history: {},
     };
   },
-
   computed: {
     min() {
       return Math.min(
         ...this.history.map(h => parseFloat(h.priceUsd).toFixed(2)),
       );
     },
-
     max() {
       return Math.max(
         ...this.history.map(h => parseFloat(h.priceUsd).toFixed(2)),
       );
     },
-
     avg() {
-      return (
-        this.history.reduce((a, b) => a + parseFloat(b.priceUsd), 0) /
-        this.history.length
+      return Math.abs(
+        ...this.history.map(h => parseFloat(h.priceUsd).toFixed(2)),
       );
     },
   },
-
   created() {
     this.getCoin();
   },
-
   methods: {
     getCoin() {
       const id = this.$route.params.id;
-
       Promise.all([api.getAsset(id), api.getAssetHistory(id)]).then(
         ([asset, history]) => {
           this.asset = asset;
@@ -121,10 +112,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-td {
-  padding: 10px;
-  text-align: center;
-}
-</style>
